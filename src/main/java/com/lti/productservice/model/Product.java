@@ -7,21 +7,27 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "products")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @SequenceGenerator(name = "seq_product", sequenceName = "seq_product", allocationSize = 1)
+@Getter
+@Setter
 public class Product {
 	
 	@Id
 	@GeneratedValue(generator = "seq_product", strategy = GenerationType.SEQUENCE)
-	
 	private Long products_id;
 	
 	private String name;
@@ -30,10 +36,19 @@ public class Product {
 	
 	private double price;
 	
-	public Product(Long products_id, String name, String description, double price) {
+	private String uuid;
+	
+	public Product(Long products_id, String name, String description, double price, String uuid) {
 		this.products_id = products_id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.uuid = uuid;
 	}
+    @JsonIgnore
+    public Long getProducts_id() {
+        return products_id;
+    }
+	
+	
 }

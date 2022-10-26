@@ -29,21 +29,23 @@ public class Product {
 	@Id
 	@GeneratedValue(generator = "seq_product", strategy = GenerationType.SEQUENCE)
 	private Long products_id;
-	
 	private String name;
-	
 	private String description;
-	
 	private double price;
-	
 	private String uuid;
+	private String category;
+	private double rating;
+	private String imagesrc;
 	
-	public Product(Long products_id, String name, String description, double price, String uuid) {
+	public Product(Long products_id, String name, String description, double price, String uuid, String category, double rating, String imagesrc) {
 		this.products_id = products_id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.uuid = uuid;
+		this.category = category;
+		this.rating = rating;
+		this.imagesrc = imagesrc;
 	}
     @JsonIgnore
     public Long getProducts_id() {

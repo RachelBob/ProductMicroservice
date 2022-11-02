@@ -1,7 +1,9 @@
 package com.lti.productservice.controller;
 
 
+import java.util.List;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.lti.productservice.model.Product;
 import com.lti.productservice.service.ProductService;
 
@@ -42,7 +45,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/findall", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity findAll() {
+	public ResponseEntity<List<Product>> findAll() {
 		logger.info("Product Controller :: getAllProduct : AllProduct ->");
 		return ResponseEntity.ok( productservice.findAll() );
 		
